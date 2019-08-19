@@ -44,11 +44,10 @@ The problem now, as you may have noticed, is that this has had a rather negative
 ![Runtime](testTime.png?raw=true "Runtime")
 
 For the purposes of our contrived example, we don't really care about the salary calculation function
-given its basic nature. Both the functions are well tested external libraries and not within our remit
-to test, so lets skip that call!
+given its basic nature. Both the functions are well tested external libraries, so lets skip that call!
 
 _Note: As you may have noticed, the function was declared as package private. This is a classic work 
-around to testing with private calls. It's not ideal, but you will see why its necessary shortly._
+around to testing with "private" calls. It's not ideal, but you will see why its necessary shortly._
 
 As we are testing against a concrete object, we cannot simply "mock" the call in the same way, we can
 however "spy" on it:
@@ -59,7 +58,7 @@ however "spy" on it:
 private EmployeeManager employeeManager;
 ```
 
-This allows us to mock out calls in the `EmployeeManager` now as if it were a mock. For example:
+This allows us to mock out calls in the `EmployeeManager` now as if it were a `Mock`. For example:
 
 ```
 @Test
