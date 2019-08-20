@@ -2,7 +2,7 @@
 
 For this example we are going to be paying our employees!
 
-```
+```java
 void calculateSalary(Employee employee) {
     try {
         // Do very expensive calculation
@@ -19,7 +19,7 @@ Like all good employers we take our time in offering the right compensation for 
 tests to continue working, we will need to exclude the salary from the comparison function generated
 by `Lombok`:
 
-```
+```java
 @Data
 @Entity
 @NoArgsConstructor
@@ -52,7 +52,7 @@ around to testing with "private" calls. It's not ideal, but you will see why its
 As we are testing against a concrete object, we cannot simply "mock" the call in the same way, we can
 however "spy" on it:
 
-```
+```java
 @Spy
 @InjectMocks
 private EmployeeManager employeeManager;
@@ -60,7 +60,7 @@ private EmployeeManager employeeManager;
 
 This allows us to mock out calls in the `EmployeeManager` now as if it were a `Mock`. For example:
 
-```
+```java
 @Test
 void createTest() {
     // This will always return whatever we try to save as the repository does
@@ -83,14 +83,14 @@ them in via the `@SpyBean` annotation (akin to the `@MockBean`)
 We do have a slight issue though. Ideally, we would like to confirm the _right_ employees are 
 being passed into the call. We can do this through an argument captor:
 
-```
+```java
 @Captor
 private ArgumentCaptor<Employee> employeeCaptor;
 ```
 
 To use the captor, we can pass it into the `Spy` mocking call:
 
-```
+```java
 @Test
 void createTest() {
     // This will always return whatever we try to save as the repository does
